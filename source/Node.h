@@ -9,6 +9,12 @@ private:
   int mRow;
   int mCol;
   bool mWalkable;
+  // 寻路中需要用到的值
+  int mG; // g
+  int mF; // f
+  int mH; // h
+  bool mOpened;
+  bool mClosed;
 
 public:
   // Node(/* args */);
@@ -21,6 +27,22 @@ public:
 
   int getRow() const;
   int getCol() const;
+
+  int get_mG() const;
+  void set_mG(int g);
+
+  int get_mF() const;
+  void set_mF(int f);
+
+  int get_mH() const;
+  void set_mH(int h);
+
+  bool get_opened() const; // 
+  void set_opened(bool v);
+
+  bool get_closed() const; // 
+  void set_closed(bool v);
+
 };
 
 // definition functions below. function declaration above.

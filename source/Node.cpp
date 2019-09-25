@@ -34,4 +34,49 @@ int Node::getCol() const
   return mCol;
 };
 
+int Node::get_mG() const
+{
+  return mG;
+};
+void Node::set_mG(int g)
+{
+  mG = g;
+};
+
+int Node::get_mF() const
+{
+  return mF;
+};
+void Node::set_mF(int f)
+{
+  mF = f;
+};
+
+int Node::get_mH() const
+{
+  return mH;
+};
+void Node::set_mH(int h)
+{
+  mH = h;
+};
+
+bool Node::get_opened() const
+{
+  return mOpened;
+}; //
+void Node::set_opened(bool v)
+{
+  mOpened = v;
+};
+
+bool Node::get_closed() const
+{
+  return mClosed;
+}; //
+void Node::set_closed(bool v)
+{
+  mClosed = v;
+};
+
 } // namespace AStar
