@@ -15,6 +15,9 @@ private:
   int mH; // h
   bool mOpened;
   bool mClosed;
+  // Node mParent; // 为什么这样写就报错。
+  Node *mParent; // come from
+  // std::unique_ptr mParent; 怎么用
 
 public:
   // Node(/* args */);
@@ -37,12 +40,15 @@ public:
   int get_mH() const;
   void set_mH(int h);
 
-  bool get_opened() const; // 
+  bool get_opened() const; //
   void set_opened(bool v);
 
-  bool get_closed() const; // 
+  bool get_closed() const; //
   void set_closed(bool v);
 
+  Node *get_parent() const; //
+  // void set_parent(const Node &n); const 在里面和在外面有什么作用？
+  void set_parent(Node &n);
 };
 
 // definition functions below. function declaration above.
