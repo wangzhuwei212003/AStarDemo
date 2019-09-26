@@ -22,7 +22,9 @@ Grid::Grid(int totalRow, int totalCol)
     }
   }
 
-  mNodes = _nodes; // 这么直接赋值能吗？
+  // mNodes = _nodes; // 这么直接赋值能吗？
+  mNodes = new Node[totalRow * totalCol]; // 这么直接赋值能吗？
+
 }
 
 Grid::~Grid()

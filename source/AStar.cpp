@@ -6,9 +6,8 @@
 namespace AStar
 {
 
-finder::finder(Heuristic heuristic)
+finder::finder()
 {
-  mHeuristic = heuristic;
 }
 
 finder::~finder()
@@ -39,7 +38,9 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
     if (curNodeRow == endNodeRow && curNodeCol == endNodeCol)
     {
       // 已经到达终点
-      return; // find the path
+      // return; // find the path
+      std::vector<std::vector<Node>> emptyPath;
+      return emptyPath;
     }
 
     int cur_g = curNode.get_mG(); // 得到当前 node 的已走过路程的花费。
@@ -76,9 +77,8 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
           // Since its f value has been updated, we have to
           // update its position in the open list
           // openList.updateItem(neighbor);
-          
+
           // 找到 neighbor 并改变 neighbor 里的数据。上面是指针的话，就已经改变了。
-          
         }
       }
     }

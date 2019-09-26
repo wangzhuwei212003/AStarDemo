@@ -11,9 +11,11 @@ private:
   int mTotalRow;
   int mTotalCol;
   // std::vector<Node[]> mNodes; 不是这么写的
-  std::vector<std::vector<Node>> mNodes;
+  // std::vector<std::vector<Node>> mNodes;
   // 元素是 Node 对象的二维数组，vector 可变长度的数组
   // 三维数组怎么表示？？
+
+  Node *mNodes;
 
 public:
   Grid(int totalRow, int totalCol);

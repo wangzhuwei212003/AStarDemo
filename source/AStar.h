@@ -13,7 +13,7 @@ private:
   Heuristic mHeuristic;
 
 public:
-  finder(Heuristic heuristic);
+  finder();
   ~finder();
 
   std::vector<std::vector<Node>> findPath(Node startNode, Node endNode, Grid map);

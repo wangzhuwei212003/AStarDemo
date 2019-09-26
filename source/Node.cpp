@@ -15,6 +15,9 @@ Node::Node(int row, int col, bool walkable)
   mOpened = false; // this means 这里表示在 openList 里，就是正在探索的点
   mClosed = false; // 这里表示，已经探索完毕的点。
 }
+Node::Node()
+{
+}
 
 Node::~Node() // delete node
 {

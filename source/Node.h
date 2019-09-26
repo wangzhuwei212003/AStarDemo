@@ -22,7 +22,7 @@ private:
   // std::unique_ptr mParent; 怎么用
 
 public:
-  // Node(/* args */);
+  Node(/* args */);
   Node(int row, int col, bool walkable);
   ~Node();
 
