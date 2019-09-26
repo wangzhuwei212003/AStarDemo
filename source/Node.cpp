@@ -19,6 +19,7 @@ Node::Node(int row, int col, bool walkable)
 Node::~Node() // delete node
 {
   delete mParent; // free memory with delete when done.
+  mParent = nullptr; // 这句话还有必要吗，我都 delete 了。
 }
 
 void Node::setWalkable(bool walkable)
