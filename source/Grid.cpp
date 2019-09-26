@@ -10,28 +10,42 @@ Grid::Grid(int totalRow, int totalCol)
   mTotalRow = totalRow;
   mTotalCol = totalCol;
 
-  std::vector<std::vector<Node>> _nodes(
-      totalRow,
-      std::vector<Node>(totalCol));
+  // std::vector<std::vector<Node>> _nodes(
+  //     totalRow,
+  //     std::vector<Node>(totalCol));
 
-  for (size_t i = 0; i < totalRow; i++)
-  {
-    for (size_t j = 0; j < totalCol; j++)
-    {
-      _nodes[i][j] = Node(i, j, false);
-    }
-  }
+  // for (size_t i = 0; i < totalRow; i++)
+  // {
+  //   for (size_t j = 0; j < totalCol; j++)
+  //   {
+  //     _nodes[i][j] = Node(i, j, false);
+  //   }
+  // }
 
   // mNodes = _nodes; // 这么直接赋值能吗？
-  mNodes = new Node[totalRow * totalCol]; // 这么直接赋值能吗？
-
+  mNodes = new Node *[mTotalRow]; // 这么直接赋值能吗？
+  for (size_t i = 0; i < mTotalRow; i++)
+  {
+    mNodes[i] = new Node[mTotalCol];
+    for (size_t j = 0; j < mTotalCol; j++)
+    {
+      mNodes[i][j].set_Row(i);
+      mNodes[i][j].set_Col(j);
+      mNodes[i][j].setWalkable(false);
+    }
+  }
 }
 
 Grid::~Grid()
 {
+  for (size_t i = 0; i < mTotalRow; i++)
+  {
+    delete mNodes[i];
+  }
+  delete mNodes;
 }
 
-Node Grid::getNodeAt(int row, int col) const
+Node &Grid::getNodeAt(int row, int col) const
 {
   return mNodes[row][col];
 };
@@ -48,8 +62,9 @@ bool Grid::isInside(int row, int col) const
 
 void Grid::setWalkableAt(int row, int col, bool walkable)
 {
-  Node tmp = getNodeAt(row, col);
-  tmp.setWalkable(walkable);
+  mNodes[row][col].setWalkable(walkable);
+  // Node tmp = getNodeAt(row, col);
+  // tmp.setWalkable(walkable);
 };
 
 std::vector<Node> Grid::getNeighbors(Node curNode) const

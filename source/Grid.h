@@ -15,13 +15,13 @@ private:
   // 元素是 Node 对象的二维数组，vector 可变长度的数组
   // 三维数组怎么表示？？
 
-  Node *mNodes;
+  Node **mNodes;
 
 public:
   Grid(int totalRow, int totalCol);
   ~Grid();
 
-  Node getNodeAt(int row, int col) const;
+  Node &getNodeAt(int row, int col) const;
   bool isWalkableAt(int row, int col) const;
   bool isInside(int row, int col) const;
   void setWalkableAt(int row, int col, bool walkable);

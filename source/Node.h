@@ -23,7 +23,6 @@ private:
 
 public:
   Node(/* args */);
-  Node(int row, int col, bool walkable);
   ~Node();
 
   // getters and setters
@@ -31,7 +30,10 @@ public:
   bool getWalkable() const; // const makes sure what ?
 
   int getRow() const;
+  void set_Row(int row);
+
   int getCol() const;
+  void set_Col(int col);
 
   int get_mG() const;
   void set_mG(int g);
@@ -50,7 +52,7 @@ public:
 
   Node *get_parent() const; //
   // void set_parent(const Node &n); const 在里面和在外面有什么作用？
-  void set_parent(Node &n);
+  void set_parent(Node *n);
 };
 
 // definition functions below. function declaration above.

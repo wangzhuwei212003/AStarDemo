@@ -14,23 +14,18 @@ finder::~finder()
 {
 }
 
-std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Grid map)
+std::vector<Node> finder::findPath(int startNodeRow, int startNodeCol, int endNodeRow, int endNodeCol, Grid &map)
 {
-
-  int startNodeRow = startNode.getRow();
-  int startNodeCol = startNode.getCol();
-  int endNodeRow = endNode.getRow();
-  int endNodeCol = endNode.getCol();
 
   // 暂时用一个 vector 表示 openList，没有优先级的
   std::vector<Node> openList; // 没有指定长度
   // std::vector<Node>::iterator it; // 这个是用来查找 openList 里的元素。find 方法需要改。
 
-  openList.push_back(startNode);
+  openList.push_back(map.getNodeAt(startNodeRow, startNodeCol));
 
   while (openList.size() > 0)
   {
-    Node curNode = openList[openList.size() - 1];
+    Node &curNode = openList[openList.size() - 1];
     openList.pop_back();
 
     int curNodeRow = curNode.getRow();
@@ -38,8 +33,8 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
     if (curNodeRow == endNodeRow && curNodeCol == endNodeCol)
     {
       // 已经到达终点
-      // return; // find the path
-      std::vector<std::vector<Node>> emptyPath;
+      // return; // find the path // TODO
+      std::vector<Node> emptyPath;
       return emptyPath;
     }
 
@@ -48,7 +43,7 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
     std::vector<Node> neighbors = map.getNeighbors(curNode);
     for (size_t i = 0; i < neighbors.size(); i++)
     {
-      Node neighbor = neighbors[i];
+      Node &neighbor = neighbors[i];
       int neighborRow = neighbor.getRow();
       int neighborCol = neighbor.getCol();
 
@@ -61,10 +56,10 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
       if (!neighbor_opened || neighbor_newG < neighbor_g)
       {
         neighbor.set_mG(neighbor_newG);
-        neighbor.set_mH(mHeuristic.manhattan(neighbor, endNode)); // 计算到终点的 Manhattan 距离
-        neighbor.set_mF(neighbor.get_mG() + neighbor.get_mH());   // f = g + h
+        neighbor.set_mH(mHeuristic.manhattan(neighbor, map.getNodeAt(endNodeRow, endNodeCol))); // 计算到终点的 Manhattan 距离
+        neighbor.set_mF(neighbor.get_mG() + neighbor.get_mH());                                 // f = g + h
         // neighbor.set_parent(&curNode); 这么写不行，initial value of reference to non-const must be an lvalue
-        neighbor.set_parent(curNode); // reference 的时候就直接传对象。// 需要分清楚是同一个对象还是拷贝的新的不同对象。
+        neighbor.set_parent(&curNode); // reference 的时候就直接传对象。// 需要分清楚是同一个对象还是拷贝的新的不同对象。
 
         if (!neighbor_opened)
         {
@@ -85,7 +80,7 @@ std::vector<std::vector<Node>> finder::findPath(Node startNode, Node endNode, Gr
   }
 
   // fail to find the path
-  std::vector<std::vector<Node>> emptyPath;
+  std::vector<Node> emptyPath;
   return emptyPath;
 }
 

@@ -3,26 +3,24 @@
 namespace AStar
 {
 
-Node::Node(int row, int col, bool walkable)
+Node::Node()
 {
-  // row = row; is this okay ?
-  mRow = row;
-  mCol = col;
-  mWalkable = walkable;
+  // row = row; is this okay ? this.row = row
+  // mRow = row;
+  // mCol = col;
+  // mWalkable = walkable;
   mG = 0;
   mF = 0;
   mH = 0;
   mOpened = false; // this means 这里表示在 openList 里，就是正在探索的点
   mClosed = false; // 这里表示，已经探索完毕的点。
 }
-Node::Node()
-{
-}
 
 Node::~Node() // delete node
 {
-  delete mParent; // free memory with delete when done.
-  mParent = nullptr; // 这句话还有必要吗，我都 delete 了。
+  // delete mParent; // free memory with delete when done.
+  // mParent = nullptr; // 这句话还有必要吗，我都 delete 了。
+  // 同一个内存空间，这里不需要 delete //
 }
 
 void Node::setWalkable(bool walkable)
@@ -39,9 +37,17 @@ int Node::getRow() const
 {
   return mRow;
 };
+void Node::set_Row(int row)
+{
+  mRow = row;
+};
 int Node::getCol() const
 {
   return mCol;
+};
+void Node::set_Col(int col)
+{
+  mCol = col;
 };
 
 int Node::get_mG() const
@@ -92,10 +98,10 @@ void Node::set_closed(bool v)
 Node *Node::get_parent() const
 {
   return mParent;
-}; //
-void Node::set_parent(Node &n)
+};                             //
+void Node::set_parent(Node *n) // &n 改为 *n
 {
-  mParent = &n;
+  mParent = n;
 };
 
 } // namespace AStar
