@@ -16,7 +16,7 @@ public:
   finder(Heuristic heuristic);
   ~finder();
 
-  std::vector<std::vector<int>> findPath(Node startNode, Node endNode, Grid map);
+  std::vector<std::vector<Node>> findPath(Node startNode, Node endNode, Grid map);
   // 找路径，返回一段路径，二维数组。int
 };
 

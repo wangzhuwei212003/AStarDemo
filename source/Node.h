@@ -16,7 +16,9 @@ private:
   bool mOpened;
   bool mClosed;
   // Node mParent; // 为什么这样写就报错。
+  // Node mParent; // incomplete type is not allowed
   Node *mParent; // come from
+  // Node *mParent = new Node(0,0,false); // come from
   // std::unique_ptr mParent; 怎么用
 
 public:
