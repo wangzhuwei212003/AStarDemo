@@ -37,6 +37,14 @@ int finder::findPath(Node *starNode, Node *endNode, Grid &map, std::vector<Node 
       //std::vector<Node> emptyPath;
       //return emptyPath;
       // TODO: generate path into path
+      path.clear();
+      Node* NodeTmp=curNode;
+      do
+      {
+        path.push_back(NodeTmp);
+        NodeTmp = NodeTmp->get_parent();
+      } while (NodeTmp->getRow() != starNode->getRow() || NodeTmp->getCol() != starNode->getCol());
+      path.push_back(NodeTmp);
       return 0;
     }
 
@@ -68,6 +76,7 @@ int finder::findPath(Node *starNode, Node *endNode, Grid &map, std::vector<Node 
         {
           openList.push_back(neighbor);
           neighbor->set_opened(true);
+          curNode = neighbor;
         }
         else
         { // 这里是需要更新 g 的 neighbor。

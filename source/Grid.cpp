@@ -31,7 +31,7 @@ Grid::Grid(int totalRow, int totalCol)
     {
       mNodes[i][j].set_Row(i);
       mNodes[i][j].set_Col(j);
-      mNodes[i][j].setWalkable(false);
+      mNodes[i][j].setWalkable(true);
     }
   }
 }
@@ -73,7 +73,7 @@ void Grid::setWalkableAt(int row, int col, bool walkable)
 
 int Grid::getNeighbors(Node *curNode, std::vector<Node*> &neighbors) const
 {
-
+  neighbors.clear();
   int row = curNode->getRow();
   int col = curNode->getCol();
   // std::vector<Node> neighbors; // 这样初始化没有指定长度有什么问题
