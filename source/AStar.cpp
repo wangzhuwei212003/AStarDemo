@@ -92,6 +92,7 @@ int finder::findPath(Node *starNode, Node *endNode, Grid &map, std::vector<Node 
 
   // fail to find the path
   path.clear();
+  return 0;
 }
 
 } // namespace AStar
