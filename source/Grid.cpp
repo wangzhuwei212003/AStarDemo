@@ -23,10 +23,10 @@ Grid::Grid(int totalRow, int totalCol)
   // }
 
   // mNodes = _nodes; // 这么直接赋值能吗？
-  mNodes = new AStar::Node *[mTotalRow]; // 这么直接赋值能吗？
+  mNodes = new Node *[mTotalRow]; // 这么直接赋值能吗？
   for (size_t i = 0; i < mTotalRow; i++)
   {
-    mNodes[i] = new AStar::Node[mTotalCol];
+    mNodes[i] = new Node[mTotalCol];
     for (size_t j = 0; j < mTotalCol; j++)
     {
       mNodes[i][j].set_Row(i);

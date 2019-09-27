@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
   test_finder.findPath(pStartNode, pEndNode, map, path); // 询一条路
   std::cout << path.size() << std::endl;
   // print path
-  for (std::vector<AStar::Node*>::reverse_iterator i = path.rbegin(); i != path.rend(); i++)
+  for (std::vector<AStar::Node *>::reverse_iterator i = path.rbegin(); i != path.rend(); i++)
   {
     std::cout << (*i)->getRow() << "," << (*i)->getCol() << std::endl;
   }

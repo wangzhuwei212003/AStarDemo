@@ -76,7 +76,6 @@ int finder::findPath(Node *starNode, Node *endNode, Grid &map, std::vector<Node 
         {
           openList.push_back(neighbor);
           neighbor->set_opened(true);
-          curNode = neighbor;
         }
         else
         { // 这里是需要更新 g 的 neighbor。

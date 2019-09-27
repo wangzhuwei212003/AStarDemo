@@ -15,7 +15,7 @@ private:
   // 元素是 Node 对象的二维数组，vector 可变长度的数组
   // 三维数组怎么表示？？
 
-  AStar::Node **mNodes;
+  Node **mNodes;
 
 public:
   Grid(int totalRow, int totalCol);
