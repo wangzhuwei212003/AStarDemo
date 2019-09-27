@@ -16,7 +16,7 @@ public:
   finder();
   ~finder();
 
-  std::vector<Node> findPath(int startNodeRow1, int startNodeCol, int endNodeRow, int endNodeCol, Grid &map);
+  int findPath(Node *starNode, Node *endNode, Grid &map, std::vector<Node *> &path);
   // 找路径，返回一段路径，二维数组。int
 };
 

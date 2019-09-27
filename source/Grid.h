@@ -15,17 +15,17 @@ private:
   // 元素是 Node 对象的二维数组，vector 可变长度的数组
   // 三维数组怎么表示？？
 
-  Node **mNodes;
+  AStar::Node **mNodes;
 
 public:
   Grid(int totalRow, int totalCol);
   ~Grid();
 
-  Node &getNodeAt(int row, int col) const;
+  Node *getNodeAt(int row, int col) const;
   bool isWalkableAt(int row, int col) const;
   bool isInside(int row, int col) const;
   void setWalkableAt(int row, int col, bool walkable);
-  std::vector<Node> getNeighbors(Node curNode) const;
+  int getNeighbors(Node *curNode, std::vector<Node*> &neighbors) const;
   // 根据一个 node 找到附近的能够行走的 node
 };
 

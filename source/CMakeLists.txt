@@ -4,7 +4,7 @@ cmake_minimum_required (VERSION 2.8)
 # 项目信息 这个就是上一层目录的文件夹名？
 project (source)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ggdb")
 # error: a space is required between consecutive right angle brackets (use '> >')
 
 ####################

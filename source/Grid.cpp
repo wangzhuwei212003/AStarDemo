@@ -9,7 +9,7 @@ Grid::Grid(int totalRow, int totalCol)
   // 初始化 mNodes
   mTotalRow = totalRow;
   mTotalCol = totalCol;
-
+  mNodes = nullptr;
   // std::vector<std::vector<Node>> _nodes(
   //     totalRow,
   //     std::vector<Node>(totalCol));
@@ -23,10 +23,10 @@ Grid::Grid(int totalRow, int totalCol)
   // }
 
   // mNodes = _nodes; // 这么直接赋值能吗？
-  mNodes = new Node *[mTotalRow]; // 这么直接赋值能吗？
+  mNodes = new AStar::Node *[mTotalRow]; // 这么直接赋值能吗？
   for (size_t i = 0; i < mTotalRow; i++)
   {
-    mNodes[i] = new Node[mTotalCol];
+    mNodes[i] = new AStar::Node[mTotalCol];
     for (size_t j = 0; j < mTotalCol; j++)
     {
       mNodes[i][j].set_Row(i);
@@ -38,41 +38,45 @@ Grid::Grid(int totalRow, int totalCol)
 
 Grid::~Grid()
 {
-  for (size_t i = 0; i < mTotalRow; i++)
+  if (nullptr != mNodes)
   {
-    delete mNodes[i];
+    for (size_t i = 0; i < mTotalRow; i++)
+    {
+      if (nullptr != mNodes[i])
+        delete[] mNodes[i];
+    }
+    delete[] mNodes;
   }
-  delete mNodes;
 }
 
-Node &Grid::getNodeAt(int row, int col) const
+Node* Grid::getNodeAt(int row, int col) const
 {
-  return mNodes[row][col];
-};
+  return &mNodes[row][col];
+}
 
 bool Grid::isWalkableAt(int row, int col) const
 {
   return isInside(row, col) && mNodes[row][col].getWalkable();
-};
+}
 
 bool Grid::isInside(int row, int col) const
 {
   return (col >= 0 && col < mTotalCol) && (row >= 0 && row < mTotalRow);
-};
+}
 
 void Grid::setWalkableAt(int row, int col, bool walkable)
 {
   mNodes[row][col].setWalkable(walkable);
   // Node tmp = getNodeAt(row, col);
   // tmp.setWalkable(walkable);
-};
+}
 
-std::vector<Node> Grid::getNeighbors(Node curNode) const
+int Grid::getNeighbors(Node *curNode, std::vector<Node*> &neighbors) const
 {
 
-  int row = curNode.getRow();
-  int col = curNode.getCol();
-  std::vector<Node> neighbors; // 这样初始化没有指定长度有什么问题
+  int row = curNode->getRow();
+  int col = curNode->getCol();
+  // std::vector<Node> neighbors; // 这样初始化没有指定长度有什么问题
   // vector,
   // push_back, push from the back,
   // pop_back, pop from the back
@@ -102,7 +106,7 @@ std::vector<Node> Grid::getNeighbors(Node curNode) const
     neighbors.push_back(getNodeAt(row, col - 1));
   }
 
-  return neighbors;
+  return 0;
 };
 
 } // namespace AStar
