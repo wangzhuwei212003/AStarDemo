@@ -14,16 +14,33 @@ int main(int argc, char const *argv[])
   std::vector<AStar::Node *> path;
   AStar::Grid map(ROW, COL); // 10 * 10 的地图
   AStar::Node *pStartNode = map.getNodeAt(0, 0);
-  AStar::Node *pEndNode = map.getNodeAt(19, 19);
+  int endRow = ROW - 1;
+  int endCol = COL - 1;
+
+  std::cout << "This test will search a path that start at (0,0) point. \n"
+            << "The map size is " << ROW << "x" << COL << ".\n"
+            << "Choose an end point. \n"
+            << "Row(0-" << ROW - 1 << "): ";
+  std::cin >> endRow;
+  std::cout << "Col(0-" << COL - 1 << "): ";
+  std::cin >> endCol;
+  std::cout << "End Point is " << endRow << ", " << endCol << ".\n";
+
+  AStar::Node *pEndNode = map.getNodeAt(endRow, endCol);
   test_finder.findPath(pStartNode, pEndNode, map, path); // 询一条路
-  std::cout << path.size() << std::endl;
+  std::cout << "Total length of the path is "
+            << path.size() << ".\n"
+            << std::endl;
   // print path
   for (std::vector<AStar::Node *>::reverse_iterator i = path.rbegin(); i != path.rend(); i++)
   {
-    std::cout << (*i)->getRow() << "," << (*i)->getCol() << std::endl;
+    std::cout << "Row " << (*i)->getRow()
+              << ", Col " << (*i)->getCol()
+              << std::endl;
   }
   // print path graph
-  std::cout << "● is the path taken" << std::endl;
+  std::cout << "\n● is the path taken.\n"
+            << std::endl;
   for (size_t i = 0; i < ROW; i++)
   {
     for (size_t j = 0; j < COL; j++)
